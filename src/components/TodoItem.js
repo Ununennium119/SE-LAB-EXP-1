@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 import { motion } from 'framer-motion';
 import toast from 'react-hot-toast';
-import React, { useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import { MdDelete, MdEdit } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { updateTodo, deleteTodo } from '../slices/todoSlice';
@@ -22,6 +22,14 @@ function TodoItem({ todo }) {
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(false);
   const [updateModalOpen, setUpdateModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (todo.status === 'complete') {
+      setChecked(true);
+    } else {
+      setChecked(false);
+    }
+  }, [todo.status]);
 
   const handleCheck = () => {
     setChecked(!checked);
