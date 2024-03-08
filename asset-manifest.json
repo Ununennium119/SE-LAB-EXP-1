@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/SE-LAB-EXP-1/static/css/main.134e461c.css",
-    "main.js": "/SE-LAB-EXP-1/static/js/main.ab43a3dc.js",
+    "main.js": "/SE-LAB-EXP-1/static/js/main.32b7f11d.js",
     "static/media/poppins-devanagari-400-normal.woff": "/SE-LAB-EXP-1/static/media/poppins-devanagari-400-normal.0e11b62db931f85340d4.woff",
     "static/media/poppins-devanagari-600-normal.woff": "/SE-LAB-EXP-1/static/media/poppins-devanagari-600-normal.ae9c1f88ace17d23e8e6.woff",
     "static/media/poppins-devanagari-500-normal.woff": "/SE-LAB-EXP-1/static/media/poppins-devanagari-500-normal.f681eaa0ad0df351e7db.woff",
@@ -28,10 +28,10 @@
     "static/media/poppins-latin-ext-700-normal.woff2": "/SE-LAB-EXP-1/static/media/poppins-latin-ext-700-normal.63d2a69665d58b22ceea.woff2",
     "index.html": "/SE-LAB-EXP-1/index.html",
     "main.134e461c.css.map": "/SE-LAB-EXP-1/static/css/main.134e461c.css.map",
-    "main.ab43a3dc.js.map": "/SE-LAB-EXP-1/static/js/main.ab43a3dc.js.map"
+    "main.32b7f11d.js.map": "/SE-LAB-EXP-1/static/js/main.32b7f11d.js.map"
   },
   "entrypoints": [
     "static/css/main.134e461c.css",
-    "static/js/main.ab43a3dc.js"
+    "static/js/main.32b7f11d.js"
   ]
 }
