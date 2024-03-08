@@ -1,70 +1,106 @@
-# Getting Started with Create React App
+# Software Engineering Lab
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Experiment Report
 
-## Available Scripts
+### Setting Up Git repository
 
-In the project directory, you can run:
+The initial setup involved creating a Git repository and establishing the main branch on GitHub. This was achieved by executing the git init command followed by commands to add the remote origin and push the main branch to GitHub.
 
-### `npm start`
+```bash
+git remote add origin git@github.com:Ununennium119/SE-LAB-EXP-1.git
+git branch -M main
+git push -u origin main
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Creating a Base React Application
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Following the installation of node.js, the the following command.
 
-### `npm test`
+```bash
+npx create-react-app se-lab-exp-1
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Changes were then committed and pushed to the remote repository.
 
-### `npm run build`
+```bash
+git add .
+git commit -m "Initialize project using Create React App"
+git push
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Deploying The Application To Github Pages
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The deployment process began with the creation of a branch with name `gh-pages`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+git checkout -b gh-pages
+git push --set-upstream origin gh-pages
+```
 
-### `npm run eject`
+This branch was configured in the GitHub repository settings (`Settings/Pages`) to serve the site.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![Github Pages](./images/github-pages.png)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Then a new branch `ci/deploy-on-github-pages` was created and the `gh-pages` dependency was added to the project for deployment purposes. This dependency is used for deploying React applications to Github Pages.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+npm install gh-pages --save-dev
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+After that, the [`main.yml`](./.github/workflows/main.yml) workflow was added which builds the application on the branch `gh-pages`. After the application is built, Github will deploy the application from `gh-pages` branch.
 
-## Learn More
+At last the branch was pushed to the remote repository, a pull request was created and the branch was merged into the `main` branch.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![CI Pull request](./images/ci-pull-request.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Protecting The Main Branch
 
-### Code Splitting
+In `Settings/Rules/Rulesets` a rule was created for the `main` branch to only allow changes using pull requests.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![Main Branch Rules](./images/main-branch-rules.png)
 
-### Analyzing the Bundle Size
+Also the `dev` branch was created and the [`enforcer.yml`](./.github/workflows/enforcer.yml) workflow was added to allow only merge requests from the `dev` branch to the `main` branch.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Our Workflow
 
-### Making a Progressive Web App
+Initialy, serveral tasks were defined by the product manager.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![Tasks List](./images/tasks-list.png)
 
-### Advanced Configuration
+For each task a new branch was created and the required functionalities was implemented in the created branch. Then a pull request was created from the created branch to the `dev` branch. After reviewing the code and resolving conflicts if any, the created branch was merged into the `dev` branch.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Here is a list of some of the pull requests:
 
-### Deployment
+![Pull Requests List](./images/pull-requests-list.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Also here is some of conflict which were resolved:
 
-### `npm run build` fails to minify
+![Conflict 1-1](./images/conflict-1-1.png)
+![Conflict 1-2](./images/conflict-1-2.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+If we needed to deploy the application to Github Pages, we only needed to merge the `dev` branch into the `main` branch by creating a pull request.
+
+![Deploy Workflow 1](./images/deploy-workflow-1.png)
+![Deploy Workflow 2](./images/deploy-workflow-2.png)
+
+### Naming Conventions
+
+#### Branch Names
+
+`<type>/<short-description>`
+- example: `feature/implement-task-template`
+
+Here is a list of some of the branches:
+
+![Branches List](./images/branches-list.png)
+
+#### Commit Messages
+
+`<type>: <description>`
+- example: `feat: Add button component`
+
+Here is a list of some of the commits:
+
+![Commits List](./images/commits-list.png)
+
+## Questions
