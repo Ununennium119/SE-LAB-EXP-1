@@ -68,3 +68,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Questions
+
+### 1
+The `.git` directory is a hidden directory that Git uses to store the metadata and object database for a repository. It contains all the information necessary for Git to manage the repository, including the commit history, branches, tags, configuration settings, and more.
+Object Database, Branches and Tags, Commit History, Configuration Settings, Index and Hooks are some informations that are stored in `.git` directory.
+This directory is created when you initialize a new Git repository using the `git init` command. This command creates an empty Git repository in the current directory, including the `.git` directory and its contents.
+
