@@ -1,7 +1,10 @@
 import { format } from 'date-fns';
 import { motion } from 'framer-motion';
-import React from 'react';
+import toast from 'react-hot-toast';
+import React, { useState } from 'react';
 import { MdDelete, MdEdit } from 'react-icons/md';
+import { useDispatch } from 'react-redux';
+import { deleteTodo } from '../slices/todoSlice';
 import styles from '../styles/modules/todoItem.module.scss';
 import { getClasses } from '../utils/getClasses';
 import CheckButton from './CheckButton';
@@ -16,6 +19,18 @@ const child = {
 };
 
 function TodoItem({ todo }) {
+  const dispatch = useDispatch();
+  const [updateModalOpen, setUpdateModalOpen] = useState(false);
+
+  const handleDelete = () => {
+    dispatch(deleteTodo(todo.id));
+    toast.success('Todo Deleted Successfully');
+  };
+
+  const handleUpdate = () => {
+    setUpdateModalOpen(true);
+  };
+
   return (
     <>
       <motion.div className={styles.item} variants={child}>
@@ -38,6 +53,8 @@ function TodoItem({ todo }) {
         <div className={styles.todoActions}>
           <div
             className={styles.icon}
+            onClick={() => handleDelete()}
+            onKeyDown={() => handleDelete()}
             tabIndex={0}
             role="button"
           >
@@ -45,6 +62,8 @@ function TodoItem({ todo }) {
           </div>
           <div
             className={styles.icon}
+            onClick={() => handleUpdate()}
+            onKeyDown={() => handleUpdate()}
             tabIndex={0}
             role="button"
           >
@@ -54,6 +73,8 @@ function TodoItem({ todo }) {
       </motion.div>
       <TodoModal
         type="update"
+        modalOpen={updateModalOpen}
+        setModalOpen={setUpdateModalOpen}
         todo={todo}
       />
     </>
