@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 import React, { useState } from 'react';
 import { MdDelete, MdEdit } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
-import { deleteTodo } from '../slices/todoSlice';
+import { updateTodo, deleteTodo } from '../slices/todoSlice';
 import styles from '../styles/modules/todoItem.module.scss';
 import { getClasses } from '../utils/getClasses';
 import CheckButton from './CheckButton';
@@ -20,7 +20,15 @@ const child = {
 
 function TodoItem({ todo }) {
   const dispatch = useDispatch();
+  const [checked, setChecked] = useState(false);
   const [updateModalOpen, setUpdateModalOpen] = useState(false);
+
+  const handleCheck = () => {
+    setChecked(!checked);
+    dispatch(
+      updateTodo({ ...todo, status: checked ? 'incomplete' : 'complete' })
+    );
+  };
 
   const handleDelete = () => {
     dispatch(deleteTodo(todo.id));
@@ -35,7 +43,7 @@ function TodoItem({ todo }) {
     <>
       <motion.div className={styles.item} variants={child}>
         <div className={styles.todoDetails}>
-          <CheckButton />
+        <CheckButton checked={checked} handleCheck={handleCheck} />
           <div className={styles.texts}>
             <p
               className={getClasses([
