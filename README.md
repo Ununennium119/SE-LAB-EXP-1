@@ -77,6 +77,9 @@ Also here is some of conflict which were resolved:
 
 ![Conflict 1-1](./images/conflict-1-1.png)
 ![Conflict 1-2](./images/conflict-1-2.png)
+![Conflict 1-1](./images/conflict-2-1.png)
+![Conflict 1-2](./images/conflict-2-2.png)
+
 
 If we needed to deploy the application to Github Pages, we only needed to merge the `dev` branch into the `main` branch by creating a pull request.
 
